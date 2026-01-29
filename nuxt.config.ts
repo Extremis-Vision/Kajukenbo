@@ -28,6 +28,7 @@ export default defineNuxtConfig({
 
   // Nitro Configuration for Production
   nitro: {
+    preset: 'node-server',
     serveStatic: true,
   },
 
