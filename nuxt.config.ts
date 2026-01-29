@@ -26,6 +26,11 @@ export default defineNuxtConfig({
     }
   },
 
+  // Nitro Configuration for Production
+  nitro: {
+    serveStatic: true,
+  },
+
   // CSS
   css: ['~/assets/css/main.css']
 })

@@ -6,7 +6,7 @@
         <!-- Logo Visual -->
         <div class="logo-wrapper">
           <div class="logo-glow"></div>
-          <img src="~/assets/images/self-logo.png" alt="Sundgau Self-Defense Logo" class="self-logo" />
+          <img :src="selfLogo" alt="Sundgau Self-Defense Logo" class="self-logo" />
         </div>
 
         <!-- Text Content -->
@@ -30,6 +30,10 @@
     </div>
   </section>
 </template>
+
+<script setup>
+import selfLogo from '~/assets/images/self-logo.png'
+</script>
 
 <style scoped>
 .self-intro-section {

@@ -10,7 +10,7 @@
         <!-- Block 1: Pourquoi -->
         <div class="method-block">
           <div class="method-visual glass">
-            <img src="~/assets/images/self-why.jpg" alt="Pourquoi la Self-Défense" />
+            <img :src="selfWhyImage" alt="Pourquoi la Self-Défense" />
             <div class="badge-icon">🎯</div>
           </div>
           <div class="method-text">
@@ -29,7 +29,7 @@
         <!-- Block 2: Comment -->
         <div class="method-block reverse">
           <div class="method-visual glass">
-            <img src="~/assets/images/self-comment.jpg" alt="Comment pratiquer" />
+            <img :src="selfCommentImage" alt="Comment pratiquer" />
             <div class="badge-icon">⚡</div>
           </div>
           <div class="method-text">
@@ -48,6 +48,11 @@
     </div>
   </section>
 </template>
+
+<script setup>
+import selfWhyImage from '~/assets/images/self-why.jpg'
+import selfCommentImage from '~/assets/images/self-comment.jpg'
+</script>
 
 <style scoped>
 .self-method-section {

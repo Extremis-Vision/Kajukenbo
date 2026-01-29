@@ -14,7 +14,7 @@ export const news: NewsItem[] = [
     title: "Stage National Kajukenbo 2026",
     date: "15 Février 2026",
     category: "Événement",
-    image: "/images/slider-1.jpg", // Placeholder
+    image: "/images/training-action.jpg", // Placeholder
     excerpt: "Ne manquez pas le grand stage national avec la présence exceptionnelle des Grands Maîtres. Ouvert à tous les niveaux.",
   },
   {
@@ -30,7 +30,7 @@ export const news: NewsItem[] = [
     title: "Rentrée Sportive : Les inscriptions sont ouvertes",
     date: "01 Septembre 2025",
     category: "Information",
-    image: "/images/slider-1.jpg", 
+    image: "/images/training-action.jpg", 
     excerpt: "Rejoignez-nous pour une nouvelle saison pleine d'énergie. Découvrez nos créneaux Self-Défense et Kajukenbo.",
   },
   {

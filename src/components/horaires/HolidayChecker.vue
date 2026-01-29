@@ -1,5 +1,5 @@
 <template>
-  <div class="holiday-checker" :class="{ 'is-holiday': isHoliday, 'is-school': !isHoliday }">
+  <div class="holiday-checker" :class="stateClass">
     <!-- Loading State -->
     <div v-if="loading" class="status-content">
       <span class="loader"></span>
@@ -14,18 +14,20 @@
     <!-- Active State -->
     <div v-else class="status-content">
       <div class="status-icon">
-        {{ isHoliday ? '🏖️' : '📚' }}
+        {{ statusIcon }}
       </div>
       <div class="status-text">
         <h3 class="status-title">
-          {{ isHoliday ? 'Pas de cours actuellement' : 'Les cours sont maintenus' }}
+          {{ statusTitle }}
         </h3>
+        <!-- Cas: Vacances actuelles -->
         <p class="status-desc" v-if="isHoliday">
           Nous sommes en période de <strong>{{ currentHolidayName }}</strong>.
           <br>Reprise le {{ formatDate(currentHolidayEnd) }}.
         </p>
+        <!-- Cas: Prochaines vacances (Alerte) -->
         <p class="status-desc" v-else-if="nextHolidayStart">
-          ⚠️ <strong>Pas de cours</strong> pendant les {{ nextHolidayName }} : <br>
+          Pendant les {{ nextHolidayName }} : <br>
           du {{ formatDate(nextHolidayStart) }} au {{ formatDate(nextHolidayEnd) }}.
         </p>
       </div>
@@ -47,6 +49,25 @@ const formatDate = (dateStr: string) => {
   if (!dateStr) return ''
   return new Date(dateStr).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })
 }
+
+// Computed properties pour gérer l'affichage proprement
+const hasWarning = computed(() => !isHoliday.value && nextHolidayStart.value)
+
+const stateClass = computed(() => {
+  if (isHoliday.value || hasWarning.value) return 'is-holiday' // Rouge
+  return 'is-school' // Vert
+})
+
+const statusTitle = computed(() => {
+  if (isHoliday.value) return 'Pas de cours actuellement'
+  if (hasWarning.value) return "⚠️ Il n'y a pas de cours"
+  return 'Les cours sont maintenus'
+})
+
+const statusIcon = computed(() => {
+  if (isHoliday.value || hasWarning.value) return '🏖️'
+  return '📚'
+})
 
 const checkHolidays = async () => {
   try {
@@ -112,8 +133,12 @@ onMounted(() => {
 }
 
 .holiday-checker.is-holiday {
-  background: rgba(196, 30, 58, 0.1); /* Red tint */
-  border-color: var(--color-primary);
+  background: rgba(196, 30, 58, 0.15); /* Red tint plus visible */
+  border-color: #ef4444;
+}
+
+.holiday-checker.is-holiday .status-title {
+    color: #ef4444; /* Titre en rouge aussi */
 }
 
 .holiday-checker.is-school {
@@ -128,6 +153,9 @@ onMounted(() => {
 }
 
 .status-icon {
+  display: flex; /* Fix alignment */
+  align-items: center;
+  justify-content: center;
   font-size: 2.5rem;
   animation: bounce 2s infinite;
 }

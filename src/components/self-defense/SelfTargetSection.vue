@@ -30,7 +30,7 @@
 
       <div class="group-visual">
         <div class="visual-frame">
-          <img src="~/assets/images/self-group.jpg" alt="Groupe Self-Défense" />
+          <img :src="selfGroupImage" alt="Groupe Self-Défense" />
           <div class="overlay-text">
             <span>Esprit d'équipe</span>
           </div>
@@ -49,6 +49,10 @@
     </div>
   </section>
 </template>
+
+<script setup>
+import selfGroupImage from '~/assets/images/self-group.jpg'
+</script>
 
 <style scoped>
 .self-target-section {

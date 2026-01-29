@@ -46,7 +46,7 @@
         <div class="instructeur-image">
           <div class="image-wrapper">
             <div class="image-circle glass">
-              <img src="~/assets/images/instructor.png" alt="Jean-Philippe KUEHN" />
+              <img :src="instructorImage" alt="Jean-Philippe KUEHN" />
             </div>
 
           </div>
@@ -55,6 +55,10 @@
     </div>
   </section>
 </template>
+
+<script setup>
+import instructorImage from '~/assets/images/instructor.png'
+</script>
 
 <style scoped>
 .instructeur-section {
