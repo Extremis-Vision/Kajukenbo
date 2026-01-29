@@ -32,6 +32,11 @@ export default defineNuxtConfig({
     serveStatic: true,
   },
 
+  // Nitro Configuration (Standalone Docker need this)
+  nitro: {
+    serveStatic: true,
+  },
+
   // CSS
   css: ['~/assets/css/main.css']
 })

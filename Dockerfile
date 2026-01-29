@@ -21,7 +21,6 @@ FROM node:18 AS production
 WORKDIR /app
 
 # Copier les fichiers nécessaires depuis le stage de build
-# Copier les fichiers nécessaires depuis le stage de build
 COPY --from=build /app/.output /app/.output
 
 # Exposer le port
