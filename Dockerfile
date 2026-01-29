@@ -21,11 +21,8 @@ FROM node:18 AS production
 WORKDIR /app
 
 # Copier les fichiers nécessaires depuis le stage de build
+# Copier les fichiers nécessaires depuis le stage de build
 COPY --from=build /app/.output /app/.output
-COPY --from=build /app/package*.json ./
-
-# Installer les dépendances de production (sécurité pour éviter les erreurs 500)
-RUN npm ci --omit=dev
 
 # Exposer le port
 EXPOSE 3000

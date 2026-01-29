@@ -32,26 +32,6 @@ export default defineNuxtConfig({
     serveStatic: true,
   },
 
-  // Security Headers
-  routeRules: {
-    '/': {
-      headers: {
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-        'Pragma': 'no-cache',
-        'Expires': '0'
-      }
-    },
-    '/**': {
-      headers: {
-        'X-Content-Type-Options': 'nosniff',
-        'X-Frame-Options': 'DENY',
-        'X-XSS-Protection': '1; mode=block',
-        'Referrer-Policy': 'same-origin',
-        'Strict-Transport-Security': 'max-age=31536000; includeSubDomains'
-      }
-    }
-  },
-
   // CSS
   css: ['~/assets/css/main.css']
 })
