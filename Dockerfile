@@ -37,5 +37,11 @@ ENV NODE_ENV=production
 ENV NITRO_PRESET=node-server
 ENV NITRO_SERVE_STATIC=true
 
-# Démarrer l'application avec un listing de debug des fichiers présents
+# Fix des permissions pour l'utilisateur node
+RUN chown -R node:node /app
+
+# Basculer sur l'utilisateur node (sécurité)
+USER node
+
+# Démarrer l'application (Sonde de debug maintenue pour vérification)
 CMD ["sh", "-c", "echo '--- DEBUG: LISTING ASSETS ---' && ls -la .output/public/_nuxt/ && echo '--- END DEBUG ---' && node .output/server/index.mjs"]
