@@ -34,5 +34,13 @@ ENV NODE_ENV=production
 ENV NITRO_PRESET=node-server
 ENV NITRO_SERVE_STATIC=true
 
-# Démarrer l'application (en tant que root pour éviter tout problème de permission sur les fichiers copiés)
+# S'assurer que tout le monde peut lire/écrire (Solution radicale debug droits)
+RUN chmod -R 777 /app
+
+# Variables de Debug
+ENV DEBUG=true
+ENV NUXT_DEBUG=true
+ENV NITRO_LOG_LEVEL=verbose
+
+# Démarrer l'application
 CMD ["node", ".output/server/index.mjs"]
