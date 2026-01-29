@@ -27,20 +27,13 @@ COPY --from=build /app/.output /app/.output
 # Exposer le port
 EXPOSE 3000
 
+# Exposer le port
+EXPOSE 3000
+
 # Variable d'environnement
 ENV HOST=0.0.0.0
 ENV PORT=3000
 ENV NODE_ENV=production
-ENV NITRO_PRESET=node-server
-ENV NITRO_SERVE_STATIC=true
-
-# S'assurer que tout le monde peut lire/écrire (Solution radicale debug droits)
-RUN chmod -R 777 /app
-
-# Variables de Debug
-ENV DEBUG=true
-ENV NUXT_DEBUG=true
-ENV NITRO_LOG_LEVEL=verbose
 
 # Démarrer l'application
 CMD ["node", ".output/server/index.mjs"]
