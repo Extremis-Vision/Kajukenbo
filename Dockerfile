@@ -1,5 +1,5 @@
 # Dockerfile pour la production
-FROM node:18-alpine AS build
+FROM node:18 AS build
 
 WORKDIR /app
 
@@ -16,13 +16,16 @@ COPY . .
 RUN npm run build
 
 # Stage de production
-FROM node:18-alpine AS production
+FROM node:18 AS production
 
 WORKDIR /app
 
 # Copier les fichiers nécessaires depuis le stage de build
 COPY --from=build /app/.output /app/.output
 COPY --from=build /app/package*.json ./
+
+# Installer les dépendances de production (sécurité pour éviter les erreurs 500)
+RUN npm ci --omit=dev
 
 # Exposer le port
 EXPOSE 3000
@@ -32,6 +35,7 @@ ENV HOST=0.0.0.0
 ENV PORT=3000
 ENV NODE_ENV=production
 ENV NITRO_PRESET=node-server
+ENV NITRO_SERVE_STATIC=true
 
 # Démarrer l'application
 CMD ["node", ".output/server/index.mjs"]
