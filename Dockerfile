@@ -37,5 +37,5 @@ ENV NODE_ENV=production
 ENV NITRO_PRESET=node-server
 ENV NITRO_SERVE_STATIC=true
 
-# Démarrer l'application
-CMD ["node", ".output/server/index.mjs"]
+# Démarrer l'application avec un listing de debug des fichiers présents
+CMD ["sh", "-c", "echo '--- DEBUG: LISTING ASSETS ---' && ls -la .output/public/_nuxt/ && echo '--- END DEBUG ---' && node .output/server/index.mjs"]
