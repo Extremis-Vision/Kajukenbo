@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  kajukenbo-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kajukenbo-website
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NUXT_HOST=0.0.0.0
+      - NUXT_PORT=3000
+    restart: unless-stopped
+
