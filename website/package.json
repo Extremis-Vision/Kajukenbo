@@ -1,0 +1,17 @@
+{
+  "name": "kajukenbo-site",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "nuxt": "3.6.5",
+    "vue": "3.3.4",
+    "vue-router": "4.2.4"
+  }
+}
