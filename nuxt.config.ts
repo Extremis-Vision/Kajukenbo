@@ -1,10 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: false },
-  
+
   // Source directory
   srcDir: 'src/',
-  
+
   // App configuration
   app: {
     head: {
@@ -26,10 +26,23 @@ export default defineNuxtConfig({
     }
   },
 
-  // Nitro Configuration for Production
+  // Nitro Configuration for Production in Docker
   nitro: {
     preset: 'node-server',
     serveStatic: true,
+  },
+
+  // Security Headers
+  routeRules: {
+    '/**': {
+      headers: {
+        'X-Content-Type-Options': 'nosniff',
+        'X-Frame-Options': 'DENY',
+        'X-XSS-Protection': '1; mode=block',
+        'Referrer-Policy': 'same-origin',
+        'Strict-Transport-Security': 'max-age=31536000; includeSubDomains'
+      }
+    }
   },
 
   // CSS
